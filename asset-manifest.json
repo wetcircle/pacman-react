@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/pacman-react/static/css/main.02e9af08.chunk.css",
+    "main.js": "/pacman-react/static/js/main.e3ff398d.chunk.js",
+    "main.js.map": "/pacman-react/static/js/main.e3ff398d.chunk.js.map",
+    "runtime-main.js": "/pacman-react/static/js/runtime-main.b069bfd6.js",
+    "runtime-main.js.map": "/pacman-react/static/js/runtime-main.b069bfd6.js.map",
+    "static/css/2.764ccc25.chunk.css": "/pacman-react/static/css/2.764ccc25.chunk.css",
+    "static/js/2.413dcbe1.chunk.js": "/pacman-react/static/js/2.413dcbe1.chunk.js",
+    "static/js/2.413dcbe1.chunk.js.map": "/pacman-react/static/js/2.413dcbe1.chunk.js.map",
+    "index.html": "/pacman-react/index.html",
+    "precache-manifest.49168c7e77f7c84a3aad2789477747d9.js": "/pacman-react/precache-manifest.49168c7e77f7c84a3aad2789477747d9.js",
+    "service-worker.js": "/pacman-react/service-worker.js",
+    "static/css/2.764ccc25.chunk.css.map": "/pacman-react/static/css/2.764ccc25.chunk.css.map",
+    "static/css/main.02e9af08.chunk.css.map": "/pacman-react/static/css/main.02e9af08.chunk.css.map",
+    "static/js/2.413dcbe1.chunk.js.LICENSE": "/pacman-react/static/js/2.413dcbe1.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b069bfd6.js",
+    "static/css/2.764ccc25.chunk.css",
+    "static/js/2.413dcbe1.chunk.js",
+    "static/css/main.02e9af08.chunk.css",
+    "static/js/main.e3ff398d.chunk.js"
+  ]
+}
