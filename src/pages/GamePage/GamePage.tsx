@@ -15,17 +15,19 @@ import { useStore } from '../../components/StoreContext';
 import { useKeyboardActions } from './components/useKeyboardActions';
 import { VSpace } from '../../components/Spacer';
 import { useGameLoop } from '../../model/useGameLoop';
+import { ReadyMessage } from './components/ReadyMessage';
 
 export const GamePage: React.FC = observer(() => {
   const store = useStore();
   useEffect(() => {
     store.resetGame();
+    store.game.showReadyMessage(); // Add this line
     return () => {
       store.game.gamePaused = true;
     };
     // eslint-disable-next-line  react-hooks/exhaustive-deps
   }, []);
-
+  
   useGameLoop();
   useKeyboardActions();
 
@@ -47,6 +49,7 @@ export const GamePage: React.FC = observer(() => {
           <PacManView />
           <GhostsGameView />
           <GameOver />
+          <ReadyMessage/>
         </Board>
         <VSpace size="large" />
         <Row justify="center">

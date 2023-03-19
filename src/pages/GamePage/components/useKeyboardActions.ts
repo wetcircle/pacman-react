@@ -31,6 +31,11 @@ export const useKeyboardActions = (): void => {
         pacMan.nextDirection = 'DOWN';
         break;
       case ' ':
+        // Don't allow pausing while Ready message appears or it breaks
+        // TODO: FIX??
+        if(game.isReady) {
+          break;
+        }
         game.gamePaused = !game.gamePaused;
         break;
       default:
