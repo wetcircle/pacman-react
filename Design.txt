@@ -14,7 +14,7 @@ Because the artifact tiles have to be displayed on the screen, they are zoomed b
 
 
 
-Was ist, wenn ich folgende Zustände auf Game-Ebene habe?
+What if I have the following game-level conditions?
   - Starting round
   - Ghosts scatter
   - Ghosts chasing
@@ -22,9 +22,9 @@ Was ist, wenn ich folgende Zustände auf Game-Ebene habe?
   - Pacman dead
   - Game Over
 
-Dann haben die Geister keinen scatter/chasing mode mehr.
-Und pacman keinen chasing mode mehr.
-Ghosts haben:
+Then the ghosts no longer have a scatter/chasing mode.
+And pacman no more chasing mode.
+Ghosts have:
   - (later) waiting in house
   - (later) leaving house
   - normal
@@ -34,8 +34,7 @@ pacman hat:
   - normal
   - dead
 
-Was passiert, wenn ein Ghost nach dem Tod sein Haus erreicht hat?
-Er bleibt im Haus und kommt erst nach dem Ende der Pacman energized phase wieder raus.
-D.h. ich kann gut diese Zustände auf Game-Ebene haben.
-Ghost bekommt einen neuen Zustand "Waiting in house" und "Leaving house".
-
+What happens when a ghost has reached his house after death?
+He stays in the house and only comes out after the end of the Pacman energized phase.
+I.e. I can easily have these states at the game level.
+Ghost gets a new state "Waiting in house" and "Leaving house".

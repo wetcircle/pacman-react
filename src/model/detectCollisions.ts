@@ -84,6 +84,13 @@ const eatPillLayerObject = (tile: TileCoordinates, game: Game) => {
   }
 
   game.maze.pills[tile.y][tile.x] = EMPTY_TILE_ID;
+  // Check if all pills have been collected
+  const pillsRemaining = game.maze.pills.flat().filter((id) => id !== EMPTY_TILE_ID).length;
+  if (pillsRemaining === 0) {
+    // Player beat the level, reset the game
+    game.store.resetLevel();
+  }
+
 };
 
 const eatPill = (tile: TileCoordinates, game: Game) => {

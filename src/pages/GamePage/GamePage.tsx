@@ -43,7 +43,7 @@ export const GamePage: React.FC = observer(() => {
       <BoardArea>
         <Board>
           <MazeView />
-          <PillsView />
+          <PillsView resetCount={store.game.resetCount} />
           <PacManView />
           <GhostsGameView />
           <GameOver />

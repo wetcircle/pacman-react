@@ -2,12 +2,13 @@ import { action, computed, observable } from 'mobx';
 import { Ghost } from './Ghost';
 import { makeGhosts, resetGhosts } from './makeGhosts';
 import { Maze } from './Maze';
-import { PacMan, resetPacMan } from './PacMan';
+import { getPillsMatrix } from "./MazeData";
+import { PacMan, resetPacMan, respawnPacMan } from './PacMan';
 import { MilliSeconds, PixelsPerFrame } from './Types';
 import { Store } from './Store';
 import { TimeoutTimer } from './TimeoutTimer';
 
-export const DEFAULT_SPEED = 2;
+export const DEFAULT_SPEED = 5;
 
 const ENERGIZER_DURATION: MilliSeconds = 5000;
 
@@ -48,6 +49,10 @@ export class Game {
   @observable
   killedGhosts = 0;
 
+  @observable
+  resetCount: number = 0;
+
+
   maze = new Maze();
 
   @action.bound
@@ -56,6 +61,19 @@ export class Game {
     this.timestamp = 0;
     resetPacMan(this.pacMan);
     resetGhosts(this.ghosts);
+  }
+
+  // If player completes level
+  @action.bound
+  resetLevel() {
+    // Teleport PacMan & Ghosts back to spawn
+    respawnPacMan(this.pacMan);
+    resetGhosts(this.ghosts);
+
+    // Reset the maze & pills layer
+    this.maze = new Maze();
+    this.maze.pills = getPillsMatrix()
+
   }
 
   @computed

@@ -11,15 +11,23 @@ export const useKeyboardActions = (): void => {
     const pacMan = game.pacMan;
     switch (pressedKey) {
       case 'ArrowLeft':
+      case 'a':
+      case 'A':
         pacMan.nextDirection = 'LEFT';
         break;
       case 'ArrowRight':
+      case 'd':
+      case 'D':
         pacMan.nextDirection = 'RIGHT';
         break;
       case 'ArrowUp':
+      case 'w':
+      case 'W':
         pacMan.nextDirection = 'UP';
         break;
       case 'ArrowDown':
+      case 's':
+      case 'S':
         pacMan.nextDirection = 'DOWN';
         break;
       case ' ':

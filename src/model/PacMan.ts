@@ -98,7 +98,7 @@ export class PacMan {
   }
 
   @observable
-  extraLivesLeft = 2;
+  extraLivesLeft = 10;
 
   @observable
   direction: Direction = 'RIGHT';
@@ -112,3 +112,10 @@ export const resetPacMan = (pacMan: PacMan) => {
   pacMan.nextDirection = 'LEFT';
   pacMan.direction = 'LEFT';
 };
+
+export const respawnPacMan = (pacMan: PacMan) => {
+  pacMan.stateChart.state.value = INITIAL_PACMAN_STATE;
+  pacMan.setTileCoordinates({ x: 14, y: 23 });
+  pacMan.nextDirection = 'LEFT';
+  pacMan.direction = 'LEFT';
+}

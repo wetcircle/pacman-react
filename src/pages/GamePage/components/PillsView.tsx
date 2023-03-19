@@ -19,6 +19,10 @@ import {
 } from '../../../model/MazeData';
 import { useGame } from '../../../components/StoreContext';
 
+interface PillsViewProps {
+  resetCount: number;
+}
+
 const BasicPillView: FC<{ position: ScreenCoordinates }> = ({ position }) => (
   <Sprite x={position.x - 10} y={position.y - 10} name="basic-pill" />
 );
@@ -65,7 +69,7 @@ const PillView = observer<{ tile: TileCoordinates }>(
 // Make each PillView an observer, so that we don't have to rerender PillsView.
 // Make PillsView a React.memo to prevent any rerenders.
 // Also: Create PillView only for those coordinates where there is a pill on first render.
-export const PillsView: FC = memo(() => {
+export const PillsView: FC<PillsViewProps> = memo(({ resetCount }) => {
   const game = useGame();
 
   return (
@@ -78,6 +82,10 @@ export const PillsView: FC = memo(() => {
       )}
     </>
   );
+}, (prevProps, nextProps) => {
+  // Compare the previous and next resetCount to detect level changes
+  console.log(prevProps.resetCount, nextProps.resetCount);
+  return prevProps.resetCount === nextProps.resetCount;
 });
 
 PillsView.displayName = 'displayName';
