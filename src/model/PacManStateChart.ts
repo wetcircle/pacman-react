@@ -9,9 +9,9 @@ interface EventHandler {
   onDead(): void;
 }
 
-type PacManContext = {};
+export type PacManContext = {};
 
-interface PacManStateSchema {
+export interface PacManStateSchema {
   states: {
     eating: {};
     chasing: {};
@@ -25,14 +25,9 @@ export type PacManEventType =
   | 'COLLISION_WITH_GHOST'
   | 'REVIVED';
 
-type PacManEvent = { type: PacManEventType };
+export type PacManEvent = { type: PacManEventType };
 
-export type PacManState = State<
-  PacManContext,
-  PacManEvent,
-  PacManStateSchema,
-  any
->;
+export type PacManState = State<PacManContext, PacManEvent>;
 
 const PacManStateChart = Machine<PacManContext, PacManStateSchema, PacManEvent>(
   {
@@ -60,7 +55,6 @@ const PacManStateChart = Machine<PacManContext, PacManStateSchema, PacManEvent>(
     },
   }
 );
-
 export const makePacManStateChart = (eventHandler: EventHandler) => {
   const extended = PacManStateChart.withConfig({
     actions: {
@@ -71,3 +65,6 @@ export const makePacManStateChart = (eventHandler: EventHandler) => {
   const stateChart = interpret(extended);
   return stateChart;
 };
+
+
+

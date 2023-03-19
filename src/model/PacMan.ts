@@ -1,4 +1,5 @@
 import { observable, action, computed } from 'mobx';
+import { Interpreter } from 'xstate';
 
 import { Direction, MilliSeconds } from './Types';
 import {
@@ -13,6 +14,9 @@ import {
   PacManEventType,
   INITIAL_PACMAN_STATE,
   PacManState,
+  PacManContext,
+  PacManStateSchema,
+  PacManEvent
 } from './PacManStateChart';
 import { Game } from './Game';
 import { StateValue } from 'xstate';
@@ -35,13 +39,14 @@ export class PacMan {
 
   game: Game;
 
-  stateChart = makePacManStateChart({
+  stateChart: Interpreter<PacManContext, PacManStateSchema, PacManEvent> = makePacManStateChart({
     onChasing: this.onChasing,
     onDead: this.onDead,
   });
 
   @observable.ref
-  stateChartState: PacManState = this.stateChart.state;
+  stateChartState: PacManState = this.stateChart.getSnapshot();
+
 
   @action.bound
   onChasing() {

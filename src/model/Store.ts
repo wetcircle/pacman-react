@@ -19,10 +19,10 @@ export class Store {
   // TODO: Add animation?
   @action.bound
   resetLevel() {
-  // Reset level
-  this.game.resetLevel();
-  this.game.resetCount++; // Increment the resetCount here
-    console.log(this.game.resetCount);
+    // Reset level
+    this.game.resetLevel();
+    this.game.resetCount++; // Increment the resetCount here
+
   }
 
 }

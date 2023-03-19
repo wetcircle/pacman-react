@@ -84,7 +84,7 @@ export const PillsView: FC<PillsViewProps> = memo(({ resetCount }) => {
   );
 }, (prevProps, nextProps) => {
   // Compare the previous and next resetCount to detect level changes
-  console.log(prevProps.resetCount, nextProps.resetCount);
+
   return prevProps.resetCount === nextProps.resetCount;
 });
 
