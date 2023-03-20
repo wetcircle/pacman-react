@@ -12,6 +12,9 @@ import {
   GhostEventType,
   makeGhostStateChart,
   GhostState,
+  GhostContext,
+  GhostEvent,
+  GhostStateSchema
 } from './GhostStateChart';
 import { Direction, MilliSeconds } from './Types';
 import {
@@ -19,7 +22,7 @@ import {
   isTileCenter,
   isTileInBoxSpace,
 } from './Ways';
-import { StateValue } from 'xstate';
+import { StateValue, State, ResolveTypegenMeta, TypegenDisabled, BaseActionObject, ServiceMap } from 'xstate';
 import { TimeoutTimer } from './TimeoutTimer';
 import { getStatePhaseLength } from './updateGhostStatePhase';
 
@@ -44,7 +47,7 @@ export class Ghost {
   }
 
   @action.bound
-  handleStateTransition(state: GhostState) {
+  handleStateTransition(state: State<GhostContext, GhostEvent, GhostStateSchema, any, ResolveTypegenMeta<TypegenDisabled, GhostEvent, BaseActionObject, ServiceMap>>) {
     if (!state.changed) {
       return;
     }
@@ -76,7 +79,7 @@ export class Ghost {
   }
 
   @observable.ref
-  stateChartState: GhostState = this.stateChart.state;
+  stateChartState: State<GhostContext, GhostEvent, GhostStateSchema, any, ResolveTypegenMeta<TypegenDisabled, GhostEvent, BaseActionObject, ServiceMap>> = this.stateChart.state;
 
   @computed
   get state(): StateValue {

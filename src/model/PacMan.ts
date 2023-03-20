@@ -1,5 +1,5 @@
 import { observable, action, computed } from 'mobx';
-import { Interpreter } from 'xstate';
+import { Interpreter, ResolveTypegenMeta, TypegenDisabled, BaseActionObject, ServiceMap, State, StateValue } from 'xstate';
 
 import { Direction, MilliSeconds } from './Types';
 import {
@@ -19,7 +19,6 @@ import {
   PacManEvent
 } from './PacManStateChart';
 import { Game } from './Game';
-import { StateValue } from 'xstate';
 
 export class PacMan {
   constructor(game: Game) {
@@ -30,7 +29,7 @@ export class PacMan {
   }
 
   @action.bound
-  handleTransition(state: PacManState) {
+  handleTransition(state: State<PacManContext, PacManEvent, PacManStateSchema, any, ResolveTypegenMeta<TypegenDisabled, PacManEvent, BaseActionObject, ServiceMap>>) {
     if (!state.changed) {
       return;
     }
@@ -39,14 +38,13 @@ export class PacMan {
 
   game: Game;
 
-  stateChart: Interpreter<PacManContext, PacManStateSchema, PacManEvent> = makePacManStateChart({
+  stateChart: Interpreter<PacManContext, PacManStateSchema, PacManEvent, any, ResolveTypegenMeta<TypegenDisabled, PacManEvent, BaseActionObject, ServiceMap>> = makePacManStateChart({
     onChasing: this.onChasing,
     onDead: this.onDead,
   });
 
   @observable.ref
-  stateChartState: PacManState = this.stateChart.getSnapshot();
-
+  stateChartState: State<PacManContext, PacManEvent, PacManStateSchema, any, ResolveTypegenMeta<TypegenDisabled, PacManEvent, BaseActionObject, ServiceMap>> = this.stateChart.state;
 
   @action.bound
   onChasing() {

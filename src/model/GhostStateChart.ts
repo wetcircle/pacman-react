@@ -4,15 +4,15 @@ import { Machine, interpret, State } from 'xstate';
 
 export const INITIAL_GHOST_STATE = 'scatter';
 
-interface GhostEventHandler {
+export interface GhostEventHandler {
   onScatterToChase(): void;
   onChaseToScatter(): void;
   onDead(): void;
 }
 
-type GhostContext = {};
+export type GhostContext = {};
 
-interface GhostStateSchema {
+export interface GhostStateSchema {
   states: {
     chase: {};
     scatter: {};
@@ -29,7 +29,7 @@ export type GhostEventType =
   | 'COLLISION_WITH_PAC_MAN'
   | 'REVIVED';
 
-type GhostEvent = { type: GhostEventType };
+export type GhostEvent = { type: GhostEventType };
 
 export type GhostState = State<GhostContext, GhostEvent, GhostStateSchema, any>;
 
