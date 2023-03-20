@@ -9,6 +9,7 @@ export const useKeyboardActions = (): void => {
     const { game } = store;
     const pressedKey = event.key;
     const pacMan = game.pacMan;
+
     switch (pressedKey) {
       case 'ArrowLeft':
       case 'a':
@@ -36,11 +37,17 @@ export const useKeyboardActions = (): void => {
         if(game.isReady) {
           break;
         }
+
         game.gamePaused = !game.gamePaused;
+        game.sendPlayerPaused(game.gamePaused);
         break;
       default:
         break;
     }
+
+    // Send the server the next direction
+    game.sendNewDirectionToServer(pacMan.nextDirection);
+
   }, []);
 
   useEffect(() => {

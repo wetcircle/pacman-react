@@ -26,6 +26,8 @@ export class PacMan {
 
     this.stateChart.onTransition(this.handleTransition);
     this.stateChart.start();
+
+    this.stateChartState = this.stateChart.state;
   }
 
   @action.bound
@@ -44,7 +46,7 @@ export class PacMan {
   });
 
   @observable.ref
-  stateChartState: State<PacManContext, PacManEvent, PacManStateSchema, any, ResolveTypegenMeta<TypegenDisabled, PacManEvent, BaseActionObject, ServiceMap>> = this.stateChart.state;
+  stateChartState: State<PacManContext, PacManEvent, PacManStateSchema, any, ResolveTypegenMeta<TypegenDisabled, PacManEvent, BaseActionObject, ServiceMap>>;
 
   @action.bound
   onChasing() {
@@ -65,6 +67,14 @@ export class PacMan {
   get state(): StateValue {
     return this.stateChartState.value;
   }
+
+  // Send data to server
+  sendStateToServer() {
+    this.game.sendActionToServer({
+      type: 'stateUpdate',
+      state: this.state,
+    });
+  }  
 
   send(event: PacManEventType) {
     this.stateChart.send(event);

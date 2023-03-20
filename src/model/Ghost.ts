@@ -44,6 +44,10 @@ export class Ghost {
 
     this.stateChart.onTransition(this.handleStateTransition);
     this.stateChart.start();
+
+    // Add this line to initialize stateChartState
+    this.stateChartState = this.stateChart.state;
+
   }
 
   @action.bound
@@ -79,8 +83,8 @@ export class Ghost {
   }
 
   @observable.ref
-  stateChartState: State<GhostContext, GhostEvent, GhostStateSchema, any, ResolveTypegenMeta<TypegenDisabled, GhostEvent, BaseActionObject, ServiceMap>> = this.stateChart.state;
-
+  stateChartState: State<GhostContext, GhostEvent, GhostStateSchema, any, ResolveTypegenMeta<TypegenDisabled, GhostEvent, BaseActionObject, ServiceMap>>;
+  
   @computed
   get state(): StateValue {
     return this.stateChartState.value;
@@ -104,6 +108,13 @@ export class Ghost {
   }
 
   name = 'ghost name';
+
+  sendStateToServer() {
+    this.game.sendActionToServer({
+      type: 'stateUpdate',
+      state: this.state,
+    });
+  }  
 
   send(event: GhostEventType) {
     this.stateChart.send(event);

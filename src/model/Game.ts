@@ -56,6 +56,18 @@ export class Game {
 
   maze = new Maze();
 
+  sendActionToServer(action: any) {
+    this.store.socket.emit('playerAction', action);
+  }  
+
+  sendNewDirectionToServer(direction: any) {
+    this.store.socket.emit('newDirection', direction);
+  }
+
+  sendPlayerPaused(paused: any) {
+    this.store.socket.emit('paused', paused);
+  }
+
   // Add this observable property to the Game class
   @observable
   isReady = false;
